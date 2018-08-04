@@ -1,9 +1,13 @@
 #ifndef _BADBACKENDEXCEPTION_H_
 #define _BADBACKENDEXCEPTION_H_
 
-class BadBackendException
-{
+#include "ApiException.h"
 
+// Unavailable backend error.
+// @param std::string backend : Name of backend.
+class BadBackendException : private ApiException
+{
+	BadBackendException(std::string backend);
 };
 
 #endif
