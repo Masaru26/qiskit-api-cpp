@@ -18,11 +18,18 @@ int main(int argc, char* argv[])
 
 	if (curl)
 	{
-		CURLcode res;
+		const char* jsonObj = "{ \"name\" : \"Pedro\" , \"age\" : \"22\" }";
+
+		struct curl_slist *headers = NULL;
+		headers = curl_slist_append(headers, "Accept: application/json");
+		headers = curl_slist_append(headers, "Content-Type: application/json");
+		headers = curl_slist_append(headers, "charsets: utf-8");
+
 		curl_easy_setopt(curl, CURLOPT_URL, "http://httpbin.org/post");
 		curl_easy_setopt(curl, CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS);
-		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "var1=value1&var2=value2");
-		res = curl_easy_perform(curl);
+		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, jsonObj);
+		CURLcode res = curl_easy_perform(curl);
 
 		if (res != CURLE_OK)
 		{
