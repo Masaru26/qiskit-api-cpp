@@ -1,3 +1,4 @@
+// Copyright by Benjamin Luxbacher
 #ifndef _BADBACKENDEXCEPTION_H_
 #define _BADBACKENDEXCEPTION_H_
 

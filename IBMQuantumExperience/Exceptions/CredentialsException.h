@@ -1,3 +1,4 @@
+// Copyright by Benjamin Luxbacher
 #ifndef _CREDENTIALSEXCEPTION_H_
 #define _CREDENTIALSEXCEPTION_H_
 

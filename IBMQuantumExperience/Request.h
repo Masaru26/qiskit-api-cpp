@@ -1,3 +1,4 @@
+// Copyright by Benjamin Luxbacher
 #ifndef _REQUEST_H_
 #define _REQUEST_H_
 

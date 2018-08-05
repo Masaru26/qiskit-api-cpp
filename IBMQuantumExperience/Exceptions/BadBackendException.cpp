@@ -1,3 +1,4 @@
+// Copyright by Benjamin Luxbacher
 #include "BadBackendException.h"
 
 BadBackendException::BadBackendException(std::string backend) 

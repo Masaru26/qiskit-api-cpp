@@ -1,6 +1,7 @@
+// Copyright by Benjamin Luxbacher
 #include "Credentials.h"
 
-Credentials::Credentials(char* token, std::map<std::string, std::string> config = std::map<std::string, std::string>(), bool verify = true, char* proxy_urls = NULL, std::map<std::string, std::string>ntlm_credentials = std::map<std::string, std::string>())
+Credentials::Credentials(char* token, std::map<std::string, std::string> config, bool verify, char* proxy_urls, std::map<std::string, std::string>ntlm_credentials)
 {
 	this->token_unique = token;
 	this->verify = verify;
@@ -13,7 +14,7 @@ Credentials::Credentials(char* token, std::map<std::string, std::string> config 
 	{
 		this->extra_args["proxies"] = this->proxy_urls;
 	}
-	if (!this->ntlm_credentials.empty)
+	if (!this->ntlm_credentials.empty())
 	{
 		/*this->extra_args["auth"] = HttpNtlmAuth(
 			this->ntlm_credentials["username"],
@@ -28,11 +29,11 @@ Credentials::Credentials(char* token, std::map<std::string, std::string> config 
 		// urllib3.disable_warnings()
 		std::cout << "-- Ignoring SSL errors.  This is not recommended --" << std::endl;
 	}
-	if (!this->config.empty && this->config.count("url") == 0)
+	if (!this->config.empty() && this->config.count("url") == 0)
 	{
 		this->config["url"] = this->config_base["url"];
 	}
-	else if (this->config.empty)
+	else if (this->config.empty())
 	{
 		this->config = this->config_base;
 	}
@@ -46,14 +47,14 @@ Credentials::Credentials(char* token, std::map<std::string, std::string> config 
 	else
 	{
 		std::string access_token = this->config["access_token"];
-		if (!access_token.empty)
+		if (!access_token.empty())
 		{
 			std::string user_id = this->config["user_id"];
-			if (!access_token.empty)
+			if (!access_token.empty())
 			{
 				this->SetToken(access_token);
 			}
-			if (!user_id.empty)
+			if (!user_id.empty())
 			{
 				this->SetUserId(user_id);
 			}
@@ -68,7 +69,7 @@ Credentials::Credentials(char* token, std::map<std::string, std::string> config 
 // Obtain the token to access to QX Platform.
 // @raises CredentialsError : when token is invalid or the user has not accepted the license.
 // @raises ApiError : when the response from the server couldn't be parsed. 
-void Credentials::ObtainToken(std::map<std::string, std::string> config = std::map<std::string, std::string>())
+void Credentials::ObtainToken(std::map<std::string, std::string> config)
 {
 
 }

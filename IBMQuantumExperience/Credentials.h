@@ -1,3 +1,4 @@
+// Copyright by Benjamin Luxbacher
 #ifndef _CREDENTIALS_H_
 #define _CREDENTIALS_H_
 

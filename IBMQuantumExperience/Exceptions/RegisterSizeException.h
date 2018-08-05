@@ -1,3 +1,4 @@
+// Copyright by Benjamin Luxbacher
 #ifndef _REGISTERSIZEEXCEPTION_H_
 #define _REGISTERSIZEEXCEPTION_H_
 

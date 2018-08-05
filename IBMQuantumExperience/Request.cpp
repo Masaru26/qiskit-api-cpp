@@ -1,3 +1,4 @@
+// Copyright by Benjamin Luxbacher
 #include "Request.h"
 
 //def __init__(self, token, config = None, verify = True, retries = 5,
