@@ -6,6 +6,8 @@
 #include <string.h>
 #include <iostream>
 
+#include "Qiskit.h"
+
 // The Credential class to manage the tokens
 class Credentials
 {
@@ -25,6 +27,9 @@ private:
 		{ "url", "https://quantumexperience.ng.bluemix.net/api" }
 	};
 
+	// Obtain the token to access to QX Platform.
+	// @raises CredentialsError : when token is invalid or the user has not accepted the license.
+	// @raises ApiError : when the response from the server couldn't be parsed. 
 	void ObtainToken(std::map<std::string, std::string> config = std::map<std::string, std::string>());
 	// Get Authenticated Token to connect with QX Platform
 	std::string GetToken();

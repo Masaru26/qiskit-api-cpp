@@ -71,7 +71,38 @@ Credentials::Credentials(char* token, std::map<std::string, std::string> config,
 // @raises ApiError : when the response from the server couldn't be parsed. 
 void Credentials::ObtainToken(std::map<std::string, std::string> config)
 {
+	std::string client_application = CLIENT_APPLICATION;
 
+	if (!this->config.empty() && this->config.count("client_application") == 1)
+	{
+		client_application += (":" + this->config["client_application"]);
+
+		std::map<std::string, std::string> headers;
+		headers["x-qx-client-application"] = client_application;
+
+		if (this->token_unique)
+		{
+			try
+			{
+				
+			}
+			catch (const std::exception&)
+			{
+				
+			}
+		}
+	}
+	/*
+		if self.token_unique :
+			try :
+			response = requests.post(str(self.config.get('url') +
+				"/users/loginWithToken"),
+				data = { 'apiToken': self.token_unique },
+				verify = self.verify,
+				headers = headers,
+				**self.extra_args)
+			except requests.RequestException as e :
+	raise ApiError('error during login: %s' % str(e))*/
 }
 
 // Get Authenticated Token to connect with QX Platform

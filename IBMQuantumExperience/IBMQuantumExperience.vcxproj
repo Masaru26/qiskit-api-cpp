@@ -126,6 +126,7 @@
     <ClInclude Include="Exceptions\CredentialsException.h" />
     <ClInclude Include="Exceptions\RegisterSizeException.h" />
     <ClInclude Include="IBMQuantumExperience.h" />
+    <ClInclude Include="Qiskit.h" />
     <ClInclude Include="Request.h" />
   </ItemGroup>
   <ItemGroup>
