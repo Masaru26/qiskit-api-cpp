@@ -15,9 +15,10 @@ private:
 	std::string dev_msg;
 
 public:
-	ApiException(std::string usr_msg = "", std::string dev_msg = "");
-	const char * what() const throw();
-	const char * message() const throw();
+	explicit ApiException(std::string usr_msg = "", std::string dev_msg = "");
+	virtual ~ApiException() throw();
+	const char* what() const throw();
+	const char* message() const throw();
 };
 
 #endif

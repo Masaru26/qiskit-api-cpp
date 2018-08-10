@@ -1,4 +1,16 @@
 // Copyright by Benjamin Luxbacher
+
+#include <iostream>
+
+int main(int argc, char* argv[])
+{
+	std::cout << "Hello World" << std::endl;
+
+	return 0;
+}
+
+
+/*
 #include <iostream>
 #include <string>
 
@@ -45,3 +57,4 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
+*/
