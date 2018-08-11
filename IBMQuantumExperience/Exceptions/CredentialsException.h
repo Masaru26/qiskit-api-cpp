@@ -7,7 +7,8 @@
 // Exception associated with bad server credentials.
 class CredentialsException : private ApiException
 {
-	CredentialsException(std::string usr_msg, std::string dev_msg);
+public:
+	CredentialsException(std::string usr_msg = "", std::string dev_msg = "");
 };
 
 #endif
