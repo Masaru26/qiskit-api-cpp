@@ -5,13 +5,16 @@
 #include <map>
 #include <string.h>
 #include <iostream>
+#include <curl/curl.h>
 
 #include "Qiskit.h"
+#include "Exceptions/ApiException.h"
+#include "Exceptions/CredentialsException.h"
 
 // The Credential class to manage the tokens
 class Credentials
 {
-private:
+public:
 	Credentials(char* token, std::map<std::string, std::string> config = std::map<std::string, std::string>(), bool verify = true, char* proxy_urls = NULL, std::map<std::string, std::string> ntlm_credentials = std::map<std::string, std::string>());
 	~Credentials();
 
