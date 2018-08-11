@@ -9,6 +9,6 @@ char* GetBackendStatsUrl(? config, ? hub, ? backendType);
 char* GetBackendUrl(? config, ? hub, ? group, ? project);
 ? [] CleanQObjectResult(job);*/
 
-std::string CLIENT_APPLICATION = "qiskit-api-py";
+std::string CLIENT_APPLICATION = "qiskit-api-cpp";
 
 #endif
