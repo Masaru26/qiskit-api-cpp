@@ -1,10 +1,13 @@
 // Copyright by Benjamin Luxbacher
 
 #include <iostream>
+#include "../IBMQuantumExperience/Credentials.h"
 
 int main(int argc, char* argv[])
 {
-	std::cout << "Hello World" << std::endl;
+	std::cout << "TEST PROGRAM FOR QISKIT-API-CPP" << std::endl << "BY BENJAMIN LUXBACHER" << std::endl << std::endl;
+
+	Credentials cred = Credentials("some token", {{ "client_application", "qiskit-api-cpp" }});
 
 	return 0;
 }
