@@ -7,6 +7,17 @@ ApiException::ApiException(std::string usr_msg, std::string dev_msg)
 	this->dev_msg = dev_msg;
 }
 
+ApiException::ApiException(const char* usr_msg, const char* dev_msg)
+{
+	this->usr_msg = usr_msg;
+	this->dev_msg = dev_msg;
+}
+
+ApiException::~ApiException() throw()
+{
+
+}
+
 const char* ApiException::what() const throw ()
 {
 	return this->dev_msg.c_str();
