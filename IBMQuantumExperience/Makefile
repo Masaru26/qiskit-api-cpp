@@ -1,6 +1,8 @@
 CXX = g++
 CXXFLAGS = -c -Wall -std=c++11 -fpic
 
+LIBPATH = /usr/lib
+
 EXCEPTIONOBJECTS = Exceptions/ApiException.o Exceptions/BadBackendException.o \
 Exceptions/CredentialsException.o Exceptions/RegisterSizeException.o
 
@@ -37,6 +39,12 @@ RegisterSizeException.o: Exceptions/RegisterSizeException.cpp Exceptions/Registe
 	$(CXX) Exceptions/RegisterSizeException.cpp -o Exceptions/RegisterSizeException.o $(CXXFLAGS)
 
 
+
+install:
+	install ./libqiskit.so $(LIBPATH)
+
+uninstall:
+	rm -f $(LIBPATH)
 
 clean:
 	rm -f *.o
