@@ -71,6 +71,15 @@ Credentials::~Credentials()
 
 }
 
+static size_t writer(char* data, size_t size, size_t nmemb, std::ostringstream* stream)
+{
+	size_t count = size * nmemb;
+
+	stream->write(data, count);
+
+	return count;
+}
+
 // Obtain the token to access to QX Platform.
 // @raises CredentialsError : when token is invalid or the user has not accepted the license.
 // @raises ApiError : when the response from the server couldn't be parsed. 
@@ -96,14 +105,19 @@ void Credentials::ObtainToken(std::map<std::string, std::string> config)
 
 	if (curl)
 	{
+		std::ostringstream contentStream;
+
+		curl_easy_setopt(curl, CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS);
+		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &contentStream);
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writer);
+
 		if (this->token_unique)
 		{
 			std::string data = "{ \"apiToken\" : \"" + std::string(this->token_unique) + "\" }";
 
 			curl_easy_setopt(curl, CURLOPT_URL, (this->config["url"] + "/users/loginWithToken").c_str());
 			//curl_easy_setopt(curl, CURLOPT_URL, "http://httpbin.org/post");
-			curl_easy_setopt(curl, CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS);
-			curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 			curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.c_str());
 			CURLcode res = curl_easy_perform(curl);
 
@@ -128,8 +142,6 @@ void Credentials::ObtainToken(std::map<std::string, std::string> config)
 
 			curl_easy_setopt(curl, CURLOPT_URL, (this->config["url"] + "/users/login").c_str());
 			//curl_easy_setopt(curl, CURLOPT_URL, "http://httpbin.org/post");
-			curl_easy_setopt(curl, CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS);
-			curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 			curl_easy_setopt(curl, CURLOPT_POSTFIELDS, credentials.c_str());
 			CURLcode res = curl_easy_perform(curl);
 
@@ -150,26 +162,32 @@ void Credentials::ObtainToken(std::map<std::string, std::string> config)
 
 		std::cout << "HTTP RESPONSE: " << response_code << std::endl;
 
+		std::string content = contentStream.str();
+
+		Json::Reader jsonReader;
+		Json::Value jsonObj;
+
 		if (response_code == 401)
 		{
-			
+			// For 401: ACCEPT_LICENSE_REQUIRED, a detailed message is
+            // present in the response and passed to the exception.
+
+			jsonReader.parse(content, jsonObj);
+			std::string error_msg = jsonObj["error"]["message"].asString();
+
+			if (!error_msg.empty())
+			{
+				throw CredentialsException("error during login: " + error_msg);
+			}
+			else
+			{
+				throw CredentialsException("invalid token");
+			}
 		}
 	}
 
 	/*
-		if response.status_code == 401:
-            error_message = None
-            try:
-                # For 401: ACCEPT_LICENSE_REQUIRED, a detailed message is
-                # present in the response and passed to the exception.
-                error_message = response.json()['error']['message']
-            except:
-                pass
-
-            if error_message:
-                raise CredentialsError('error during login: %s' % error_message)
-            else:
-                raise CredentialsError('invalid token')
+		
         try:
             response.raise_for_status()
             self.data_credentials = response.json()

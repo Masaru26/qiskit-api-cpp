@@ -1,5 +1,6 @@
 CXX = g++
 CXXFLAGS = -c -Wall -std=c++11 -fpic
+LIBINCLUDEFLAGS = -lcurl -ljsoncpp
 
 LIBPATH = /usr/lib
 
@@ -13,7 +14,7 @@ OBJECTS = $(EXCEPTIONOBJECTS) IBMQuantumExperience.o Credentials.o Request.o
 all: libqiskit.so
 
 libqiskit.so: $(OBJECTS)
-	$(CXX) $(OBJECTS) -lcurl -shared -o libqiskit.so
+	$(CXX) $(OBJECTS) $(LIBINCLUDEFLAGS) -shared -o libqiskit.so
 
 IBMQuantumExperience.o: IBMQuantumExperience.cpp IBMQuantumExperience.h
 	$(CXX) IBMQuantumExperience.cpp -o IBMQuantumExperience.o $(CXXFLAGS)

@@ -5,7 +5,9 @@
 #include <map>
 #include <string.h>
 #include <iostream>
+#include <sstream>
 #include <curl/curl.h>
+#include <jsoncpp/json/json.h>
 
 #include "Qiskit.h"
 #include "Exceptions/ApiException.h"
