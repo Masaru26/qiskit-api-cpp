@@ -20,7 +20,14 @@ ApiException::~ApiException() throw()
 
 const char* ApiException::what() const throw ()
 {
-	return this->dev_msg.c_str();
+	if (!this->dev_msg.empty())
+	{
+		return this->dev_msg.c_str();
+	}
+	else
+	{
+		return this->usr_msg.c_str();
+	}
 }
 
 const char* ApiException::message() const throw ()
