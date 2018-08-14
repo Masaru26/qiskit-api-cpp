@@ -2,14 +2,28 @@
 
 #include <iostream>
 #include "../IBMQuantumExperience/Credentials.h"
+#include "../IBMQuantumExperience/Exceptions/ApiException.h"
 
 int main(int argc, char* argv[])
 {
 	std::cout << "TEST PROGRAM FOR QISKIT-API-CPP" << std::endl << "BY BENJAMIN LUXBACHER" << std::endl << std::endl;
 
-	Credentials cred = Credentials("some token", {{ "client_application", "qiskit-api-cpp" }});
+	int retVal = 0;
 
-	return 0;
+	try
+	{
+		Credentials cred = Credentials("41842da110b7eef0e492e40d49a128f87a1da085d7bfefc8c1170fcb49ba995142f61935701b88426614aa1f34391575de850efb61b51ccf0ff7a97b58b60725");
+	}
+	catch(const ApiException& e)
+	{
+		std::cout << e.what() << std::endl;
+		retVal = -1;
+	}
+
+	std::cout << std::endl << "DONE!" << std::endl;
+	std::cout << retVal << std::endl;
+	
+	return retVal;
 }
 
 
