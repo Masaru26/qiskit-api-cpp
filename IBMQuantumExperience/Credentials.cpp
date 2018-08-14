@@ -1,7 +1,7 @@
 // Copyright by Benjamin Luxbacher
 #include "Credentials.h"
 
-Credentials::Credentials(char* token, std::map<std::string, std::string> config, bool verify, char* proxy_urls, std::map<std::string, std::string>ntlm_credentials)
+Credentials::Credentials(std::string token, std::map<std::string, std::string> config, bool verify, char* proxy_urls, std::map<std::string, std::string>ntlm_credentials)
 {
 	this->token_unique = token;
 	this->verify = verify;
@@ -29,10 +29,12 @@ Credentials::Credentials(char* token, std::map<std::string, std::string> config,
 		// urllib3.disable_warnings()
 		std::cout << "-- Ignoring SSL errors.  This is not recommended --" << std::endl;
 	}
+	// if config does not contain url => use default url
 	if (!this->config.empty() && this->config.count("url") == 0)
 	{
 		this->config["url"] = this->config_base["url"];
 	}
+	// if there is no config => use default config
 	else if (this->config.empty())
 	{
 		this->config = this->config_base;
@@ -40,20 +42,21 @@ Credentials::Credentials(char* token, std::map<std::string, std::string> config,
 
 	// ToDo:
 	// self.data_credentials = {}
-	if (token != NULL)
+	// if no token => get token
+	if (!token.empty())
 	{
 		this->ObtainToken(this->config);
 	}
 	else
 	{
 		std::string access_token = this->config["access_token"];
+		// if token empty => get token
 		if (!access_token.empty())
 		{
-			std::string user_id = this->config["user_id"];
-			if (!access_token.empty())
-			{
-				this->SetToken(access_token);
-			}
+			std::string user_id = this->config["userId"];
+
+			this->SetToken(access_token);
+
 			if (!user_id.empty())
 			{
 				this->SetUserId(user_id);
@@ -87,6 +90,7 @@ void Credentials::ObtainToken(std::map<std::string, std::string> config)
 {
 	std::string client_application = CLIENT_APPLICATION;
 
+	// if client_application is in config
 	if (!this->config.empty() && this->config.count("client_application") == 1)
 	{
 		client_application += (":" + this->config["client_application"]);
@@ -112,7 +116,7 @@ void Credentials::ObtainToken(std::map<std::string, std::string> config)
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &contentStream);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writer);
 
-		if (this->token_unique)
+		if (!this->token_unique.empty())
 		{
 			std::string data = "{ \"apiToken\" : \"" + std::string(this->token_unique) + "\" }";
 
@@ -167,12 +171,13 @@ void Credentials::ObtainToken(std::map<std::string, std::string> config)
 		Json::Reader jsonReader;
 		Json::Value jsonObj;
 
+		jsonReader.parse(content, jsonObj);
+
 		if (response_code == 401)
 		{
 			// For 401: ACCEPT_LICENSE_REQUIRED, a detailed message is
             // present in the response and passed to the exception.
 
-			jsonReader.parse(content, jsonObj);
 			std::string error_msg = jsonObj["error"]["message"].asString();
 
 			if (!error_msg.empty())
@@ -184,20 +189,35 @@ void Credentials::ObtainToken(std::map<std::string, std::string> config)
 				throw CredentialsException("invalid token");
 			}
 		}
+
+		// 200 = http-ok
+		if (response_code == 200)
+		{
+			// ToDo: improve?
+			if (jsonObj["id"] == Json::nullValue || 
+				jsonObj["ttl"] == Json::nullValue ||
+				jsonObj["created"] == Json::nullValue ||
+				jsonObj["userId"] == Json::nullValue)
+			{
+				throw ApiException("error during login: missing response values", 
+				"id: " + jsonObj["id"].asString() + ", ttl: " + jsonObj["ttl"].asString() + ", created: " + jsonObj["created"].asString() + ", userId: " + jsonObj["userId"].asString());
+			}
+
+			this->data_credentials["id"] = jsonObj["id"].asString();
+			this->data_credentials["ttl"] = jsonObj["ttl"].asString();
+			this->data_credentials["created"] = jsonObj["created"].asString();
+			this->data_credentials["userId"] = jsonObj["userId"].asString();
+		}
+		else
+		{
+			throw ApiException("error during login: HTTP-CODE " + response_code);
+		}
+
+		if (this->GetToken().empty())
+		{
+			throw CredentialsException("invalid token");
+		}
 	}
-
-	/*
-		
-        try:
-            response.raise_for_status()
-            self.data_credentials = response.json()
-        except (requests.HTTPError, ValueError) as e:
-            raise ApiError('error during login: %s' % str(e))
-
-        if self.get_token() is None:
-			raise CredentialsError('invalid token')
-	*/
-
 
 	curl_easy_cleanup(curl);
 }
@@ -229,5 +249,5 @@ void Credentials::SetToken(std::string access_token)
 // Set User Id to connect with QX Platform API
 void Credentials::SetUserId(std::string user_id)
 {
-	this->data_credentials["user_id"] = user_id;
+	this->data_credentials["userId"] = user_id;
 }

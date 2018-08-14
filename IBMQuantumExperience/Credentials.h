@@ -17,10 +17,10 @@
 class Credentials
 {
 public:
-	Credentials(char* token, std::map<std::string, std::string> config = std::map<std::string, std::string>(), bool verify = true, char* proxy_urls = NULL, std::map<std::string, std::string> ntlm_credentials = std::map<std::string, std::string>());
+	Credentials(std::string token, std::map<std::string, std::string> config = std::map<std::string, std::string>(), bool verify = true, char* proxy_urls = NULL, std::map<std::string, std::string> ntlm_credentials = std::map<std::string, std::string>());
 	~Credentials();
 
-	char* token_unique;
+	std::string token_unique;
 	bool verify;
 	std::map<std::string, std::string> config;
 	char* proxy_urls;
