@@ -4,12 +4,15 @@
 
 #include "ApiException.h"
 
-// Unavailable backend error.
-// @param std::string backend : Name of backend.
-class BadBackendException : private ApiException
+namespace Qiskit
 {
-public:
-	BadBackendException(std::string backend);
-};
+	// Unavailable backend error.
+	// @param std::string backend : Name of backend.
+	class BadBackendException : private ApiException
+	{
+	public:
+		BadBackendException(std::string backend);
+	};
+}
 
 #endif

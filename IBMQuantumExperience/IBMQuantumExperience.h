@@ -2,10 +2,14 @@
 #ifndef _IBMQUANTUMEXPERIENCE_H_
 #define _IBMQUANTUMEXPERIENCE_H_
 
-class IBMQuantumExperience
+namespace Qiskit
 {
-public:
-	
-};
+    class IBMQuantumExperience
+    {
+    public:
+        IBMQuantumExperience();
+        ~IBMQuantumExperience();
+    };
+}
 
 #endif

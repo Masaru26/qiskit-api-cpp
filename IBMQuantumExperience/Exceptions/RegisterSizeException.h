@@ -4,11 +4,14 @@
 
 #include "ApiException.h"
 
-// Exception due to exceeding the maximum number of allowed qubits.
-class RegisterSizeException : private ApiException
+namespace Qiskit
 {
-public:
-	RegisterSizeException(std::string usr_msg = "", std::string dev_msg = "");
-};
+	// Exception due to exceeding the maximum number of allowed qubits.
+	class RegisterSizeException : private ApiException
+	{
+	public:
+		RegisterSizeException(std::string usr_msg = "", std::string dev_msg = "");
+	};
+}
 
 #endif

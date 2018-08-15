@@ -4,11 +4,14 @@
 
 #include "ApiException.h"
 
-// Exception associated with bad server credentials.
-class CredentialsException : private ApiException
+namespace Qiskit
 {
-public:
-	CredentialsException(std::string usr_msg = "", std::string dev_msg = "");
-};
+	// Exception associated with bad server credentials.
+	class CredentialsException : private ApiException
+	{
+	public:
+		CredentialsException(std::string usr_msg = "", std::string dev_msg = "");
+	};
+}
 
 #endif
