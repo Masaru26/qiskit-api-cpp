@@ -3,7 +3,12 @@
 
 namespace Qiskit
 {
-	Credentials::Credentials(std::string token, std::map<std::string, std::string> config, bool verify, char* proxy_urls, std::map<std::string, std::string>ntlm_credentials)
+	Credentials::Credentials()
+	{
+		
+	}
+
+	Credentials::Credentials(std::string token, Config config, bool verify, std::map<std::string, std::string> proxy_urls, std::map<std::string, std::string>ntlm_credentials)
 	{
 		this->token_unique = token;
 		this->verify = verify;
@@ -12,9 +17,9 @@ namespace Qiskit
 		this->ntlm_credentials = ntlm_credentials;
 
 		// Set the extra arguments to requests (proxy and auth).
-		if (this->proxy_urls != NULL)
+		if (!this->proxy_urls.empty())
 		{
-			this->extra_args["proxies"] = this->proxy_urls;
+			// ToDo: this->extra_args["proxies"] = this->proxy_urls;
 		}
 		if (!this->ntlm_credentials.empty())
 		{
@@ -35,9 +40,9 @@ namespace Qiskit
 			std::cout << "-- Ignoring SSL errors.  This is not recommended --" << std::endl;
 		}
 		// if config does not contain url => use default url
-		if (!this->config.empty() && this->config.count("url") == 0)
+		if (this->config.url.empty())
 		{
-			this->config["url"] = this->config_base["url"];
+			this->config.url = this->config_base.url;
 		}
 		// if there is no config => use default config
 		else if (this->config.empty())
@@ -54,11 +59,11 @@ namespace Qiskit
 		}
 		else
 		{
-			std::string access_token = this->config["access_token"];
+			std::string access_token = this->config.access_token;
 			// if token empty => get token
 			if (!access_token.empty())
 			{
-				std::string user_id = this->config["userId"];
+				std::string user_id = this->config.userId;
 
 				this->SetToken(access_token);
 
@@ -91,14 +96,14 @@ namespace Qiskit
 	// Obtain the token to access to QX Platform.
 	// @raises CredentialsError : when token is invalid or the user has not accepted the license.
 	// @raises ApiError : when the response from the server couldn't be parsed. 
-	void Credentials::ObtainToken(std::map<std::string, std::string> config)
+	void Credentials::ObtainToken(Config config)
 	{
 		std::string client_application = CLIENT_APPLICATION;
 
 		// if client_application is in config
-		if (!this->config.empty() && this->config.count("client_application") == 1)
+		if (!this->config.client_application.empty())
 		{
-			client_application += (":" + this->config["client_application"]);
+			client_application += (":" + this->config.client_application);
 		}
 
 		//std::map<std::string, std::string> headers;
@@ -125,7 +130,7 @@ namespace Qiskit
 			{
 				std::string data = "{ \"apiToken\" : \"" + std::string(this->token_unique) + "\" }";
 
-				curl_easy_setopt(curl, CURLOPT_URL, (this->config["url"] + "/users/loginWithToken").c_str());
+				curl_easy_setopt(curl, CURLOPT_URL, (this->config.url + "/users/loginWithToken").c_str());
 				//curl_easy_setopt(curl, CURLOPT_URL, "http://httpbin.org/post");
 				curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.c_str());
 				CURLcode res = curl_easy_perform(curl);
@@ -146,11 +151,11 @@ namespace Qiskit
 					**self.extra_args)
 				*/
 			}
-			else if (!config.empty() && config.count("email") == 1 && config.count("password") == 1)
+			else if (!config.email.empty() && !config.password.empty())
 			{
-				std::string credentials = "{ \"email\" : \"" + config["email"] + "\", \"password\" : \"" + config["password"] + "\" }";
+				std::string credentials = "{ \"email\" : \"" + config.email + "\", \"password\" : \"" + config.password + "\" }";
 
-				curl_easy_setopt(curl, CURLOPT_URL, (this->config["url"] + "/users/login").c_str());
+				curl_easy_setopt(curl, CURLOPT_URL, (this->config.url + "/users/login").c_str());
 				//curl_easy_setopt(curl, CURLOPT_URL, "http://httpbin.org/post");
 				curl_easy_setopt(curl, CURLOPT_POSTFIELDS, credentials.c_str());
 				CURLcode res = curl_easy_perform(curl);
@@ -242,7 +247,7 @@ namespace Qiskit
 	}
 
 	// Get Configuration setted to connect with QX Platform
-	std::map<std::string, std::string> Credentials::GetConfig()
+	Config Credentials::GetConfig()
 	{
 		return this->config;
 	}
