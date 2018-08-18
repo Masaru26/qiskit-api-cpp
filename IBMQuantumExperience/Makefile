@@ -7,7 +7,7 @@ LIBPATH = /usr/lib
 EXCEPTIONOBJECTS = Exceptions/ApiException.o Exceptions/BadBackendException.o \
 Exceptions/CredentialsException.o Exceptions/RegisterSizeException.o
 
-OBJECTS = $(EXCEPTIONOBJECTS) IBMQuantumExperience.o Credentials.o Request.o
+OBJECTS = $(EXCEPTIONOBJECTS) IBMQuantumExperience.o Credentials.o Request.o Config.o HTTPResponse.o
 
 
 
@@ -19,11 +19,17 @@ libqiskit.so: $(OBJECTS)
 IBMQuantumExperience.o: IBMQuantumExperience.cpp IBMQuantumExperience.h
 	$(CXX) IBMQuantumExperience.cpp -o IBMQuantumExperience.o $(CXXFLAGS)
 
-Credentials.o: Credentials.cpp Credentials.h
+Credentials.o: Credentials.cpp Credentials.h Qiskit.h
 	$(CXX) Credentials.cpp -o Credentials.o $(CXXFLAGS)
 
-Request.o: Request.cpp Request.h
+Request.o: Request.cpp Request.h Qiskit.h
 	$(CXX) Request.cpp -o Request.o $(CXXFLAGS)
+
+Config.o: Config.cpp Config.h
+	$(CXX) Config.cpp -o Config.o $(CXXFLAGS)
+
+HTTPResponse.o: HTTPResponse.cpp HTTPResponse.h
+	$(CXX) HTTPResponse.cpp -o HTTPResponse.o $(CXXFLAGS)
 
 
 
@@ -45,7 +51,7 @@ install:
 	install ./libqiskit.so $(LIBPATH)
 
 uninstall:
-	rm -f $(LIBPATH)
+	rm -f $(LIBPATH)/libqiskit.so
 
 clean:
 	rm -f *.o
