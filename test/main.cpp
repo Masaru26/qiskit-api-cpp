@@ -3,16 +3,27 @@
 #include <iostream>
 #include "../IBMQuantumExperience/Credentials.h"
 #include "../IBMQuantumExperience/Exceptions/ApiException.h"
+#include "../IBMQuantumExperience/Config.h"
 
 int main(int argc, char* argv[])
 {
 	std::cout << "TEST PROGRAM FOR QISKIT-API-CPP" << std::endl << "BY BENJAMIN LUXBACHER" << std::endl << std::endl;
 
 	int retVal = 0;
+	char* token;
+
+	if (argc == 1)
+	{
+		token = "41842da110b7eef0e492e40d49a128f87a1da085d7bfefc8c1170fcb49ba995142f61935701b88426614aa1f34391575de850efb61b51ccf0ff7a97b58b60725";
+	}
+	else
+	{
+		token = argv[1];
+	}
 
 	try
 	{
-		Qiskit::Credentials cred = Qiskit::Credentials("41842da110b7eef0e492e40d49a128f87a1da085d7bfefc8c1170fcb49ba995142f61935701b88426614aa1f34391575de850efb61b51ccf0ff7a97b58b60725");
+		Qiskit::Credentials cred(token);
 	}
 	catch(const Qiskit::ApiException& e)
 	{
@@ -25,8 +36,15 @@ int main(int argc, char* argv[])
 	
 	return retVal;
 }
+/*
+0x0000000000402a09
 
+0x0000000000402a1c
+0x0000000000402a37
 
+0x0000000000402a69
+0x0000000000402b77
+*/
 /*
 #include <iostream>
 #include <string>
