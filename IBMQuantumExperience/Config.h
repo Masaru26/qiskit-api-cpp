@@ -22,6 +22,9 @@ namespace Qiskit
         std::string password;
         // keys: http, https, username_ntlm, password_ntlm
         std::map<std::string, std::string> proxies;
+        std::string hub;
+        std::string group;
+        std::string project;
 
         bool empty();
     };
