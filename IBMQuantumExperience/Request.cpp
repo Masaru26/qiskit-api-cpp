@@ -3,6 +3,11 @@
 
 namespace Qiskit
 {
+    Request::Request()
+    {
+        
+    }
+
     // The Request class to manage the methods
     Request::Request(std::string token, Config config, bool verify, int retries, double timeout_interval)
     {

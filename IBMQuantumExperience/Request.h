@@ -18,6 +18,7 @@ namespace Qiskit
     {
     public:
         // The Request class to manage the methods
+        Request();
         Request(std::string token, Config config = Config(), bool verify = true, int retries = 5, double timeout_interval = 1.0);
         ~Request();
     private:
