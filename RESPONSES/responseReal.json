@@ -1,0 +1,28 @@
+{
+	"qasms":
+	[
+		{
+			"qasm":"include \"qelib1.inc\";\nqreg q[5];\ncreg c[5];\n\nh q[0];\nbarrier q[0];\nt q[0];\nbarrier q[0];\nh q[0];\nmeasure q[0] -> c[0];\n",
+			"status":"WORKING_IN_PROGRESS",
+			"executionId":"5bcee56f8dcd770057aac429"
+		}
+	],
+	"shots":1024,
+	"backend":
+	{
+		"id":"5ae875670f020500393162b3",
+		"name":"ibmqx4"
+	},
+	"status":"RUNNING",
+	"maxCredits":3,
+	"usedCredits":3,
+	"creationDate":"2018-10-23T09:10:06.928Z",
+	"deleted":false,
+	"id":"5bcee56e8dcd770057aac428",
+	"userId":"5ae871330f02050039311f36",
+	"infoQueue":
+	{
+		"status":"PENDING_IN_QUEUE",
+		"position":112
+	}
+}
