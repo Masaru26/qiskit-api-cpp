@@ -1,0 +1,5 @@
+
+class QRealDoneParamsCustomize{
+    public:
+        QRealDoneParamsCustomize();
+};
