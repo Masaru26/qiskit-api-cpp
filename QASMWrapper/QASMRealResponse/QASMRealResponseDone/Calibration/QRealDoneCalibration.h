@@ -6,6 +6,9 @@
 
 class QRealDoneCalibration{
     public:
+        QRealDoneCalibration();
+        QRealDoneCalibration(std::string, QRealDoneFridgeParameters, std::list<QRealDoneQubit>, std::list<QRealDoneMultiQubitGates>, std::string);
+    
         std::string lastUpdateDate;
         QRealDoneFridgeParameters fridgeParameters;
         std::list<QRealDoneQubit> qubits;
