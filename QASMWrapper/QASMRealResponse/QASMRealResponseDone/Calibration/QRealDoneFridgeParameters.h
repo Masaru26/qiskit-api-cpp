@@ -3,6 +3,9 @@
 
 class QRealDoneFridgeParameters{
     public:
+        QRealDoneFridgeParameters();
+        QRealDoneFridgeParameters(std::string, QRealDoneFridgeTemperature);
+    
         std::string cooldownDate;
         QRealDoneFridgeTemperature temperature;
 };
