@@ -1,0 +1,47 @@
+Done - Uundone Same: Everything in undone existst in done
+startDate
+modificationDate
+typeCredits
+status:
+	id
+ip:
+	ip
+	country
+	continet
+shots
+deleted
+userDeleted
+userId
+jobId
+qasm
+
+Done - Sim:
+result:
+	date
+	data:
+		p:
+			labels
+			values
+		qasm
+		serialNumberDevice
+		time
+startDate
+modificationDate
+time
+endDate
+status:
+	id
+ip:
+	ip
+	country
+	continent
+calibration:
+	// Information for real start e.g. fridgeParams
+shots
+paramCustomize:
+	// Information for simulator start e.g. seed
+deleted
+userDeleted
+id
+deviceId
+userId

@@ -1,0 +1,47 @@
+Same:
+startDate string
+modificationDate long
+shots int
+deleted bool
+userDeleted bool
+userId string
+jobId string
+qasm string
+time double
+endDate string
+id string
+deviceId string
+deviceRunType string
+codeId string
+typeCredits string
+
+result:
+	date
+	data:
+		creg_labels
+		p:
+			qubits
+			labels
+			values
+		additionalData:
+			seed
+		qasm
+		serialNumberDevice
+		time
+
+status:
+	id
+
+ip:
+	ip
+	country
+	continent
+
+calibration:
+	//vorhandenes verwenden
+paramsCustomize:
+	seed
+code:
+	//vorhandenes verwenden
+
+//DatenTyp dazuschreiben
