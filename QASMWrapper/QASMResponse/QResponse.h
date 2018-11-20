@@ -5,7 +5,7 @@
 #include "QStatus.h";
 #include "QIP.h";
 #include "QCalibration.h";
-#include "QParamCustomize.h";
+#include "QParamsCustomize.h";
 #include "QCode.h";
 
 class QResponse {
@@ -15,6 +15,7 @@ public:
 	QResponse(std::string, long, int, bool, bool, std::string, std::string, std::string, double,
 		std::string, std::string, std::string, std::string, std::string, std::string, QResult,
 		QStatus, QIP, QCalibration, QParamsCustomize, QCode);
+
 	std::string startDate;
 	long modificationDate;
 	int shots;

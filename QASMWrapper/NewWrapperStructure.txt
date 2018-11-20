@@ -14,7 +14,6 @@ deviceId string
 deviceRunType string
 codeId string
 typeCredits string
-
 result:
 	date
 	data:
@@ -28,20 +27,16 @@ result:
 		qasm
 		serialNumberDevice
 		time
-
 status:
 	id
-
 ip:
 	ip
 	country
 	continent
-
 calibration:
 	//vorhandenes verwenden
 paramsCustomize:
 	seed
 code:
 	//vorhandenes verwenden
-
 //DatenTyp dazuschreiben
