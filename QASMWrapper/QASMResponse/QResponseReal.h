@@ -6,6 +6,9 @@ class QResponseReal : public QResponse {
 	public:
 		QResponseReal();
 
+		QCalibration calibration;
+		std::string typeCredits;
+
 };
 
 #endif
