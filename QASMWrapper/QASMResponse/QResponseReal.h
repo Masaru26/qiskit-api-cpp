@@ -5,10 +5,10 @@
 class QResponseReal : public QResponse {
 	public:
 		QResponseReal();
+		QResponseReal(QCalibration, std::string);
 
 		QCalibration calibration;
 		std::string typeCredits;
-
 };
 
 #endif

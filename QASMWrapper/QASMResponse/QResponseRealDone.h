@@ -4,7 +4,7 @@
 class QResponseRealDone : public QResponseReal {
 	public:
 		QResponseRealDone();
-
+		QResponseRealDone(double);
 		double time;
 };
 
