@@ -6,6 +6,7 @@
 class QResponseSim : public QResponse {
 	public:
 		QResponseSim();
+		QResponseSim(QCode, QParamsCustomize, double);
 
 		QCode code;
 		QParamsCustomize paramsCustomize;
