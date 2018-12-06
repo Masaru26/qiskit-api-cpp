@@ -4,6 +4,7 @@ QStatus::QStatus()
 {
 }
 
-QStatus::QStatus(std::string)
+QStatus::QStatus(std::string id)
 {
+	this->id = id;
 }

@@ -4,6 +4,9 @@ QFridgeTemperature::QFridgeTemperature()
 {
 }
 
-QFridgeTemperature::QFridgeTemperature(std::string, std::list<std::string>, std::string)
+QFridgeTemperature::QFridgeTemperature(std::string date, std::list<std::string> value, std::string unit)
 {
+	this->date = date;
+	this->value = value;
+	this->unit = unit;
 }

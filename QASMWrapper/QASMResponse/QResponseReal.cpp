@@ -4,6 +4,8 @@ QResponseReal::QResponseReal()
 {
 }
 
-QResponseReal::QResponseReal(QCalibration, std::string)
+QResponseReal::QResponseReal(QCalibration calibration, std::string typeCredits)
 {
+	this->calibration = calibration;
+	this->typeCredits = typeCredits;
 }

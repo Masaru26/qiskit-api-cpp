@@ -4,6 +4,8 @@ QResult::QResult()
 {
 }
 
-QResult::QResult(std::string, QData)
+QResult::QResult(std::string date, QData data)
 {
+	this->date = date;
+	this->data = data;
 }

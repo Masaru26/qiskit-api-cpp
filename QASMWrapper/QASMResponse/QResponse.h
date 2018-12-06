@@ -12,7 +12,7 @@ class QResponse {
 
 	public:
 		QResponse();
-		QResponse(std::string, long, int, bool, bool, std::string, std::string, std::string, double,
+		QResponse(std::string, long, int, bool, bool, std::string, std::string, std::string,
 			std::string, std::string, std::string, std::string, std::string, std::string, QResult,
 			QStatus, QIP);
 

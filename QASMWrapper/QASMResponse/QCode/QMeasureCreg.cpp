@@ -4,6 +4,8 @@ QMeasureCreg::QMeasureCreg()
 {
 }
 
-QMeasureCreg::QMeasureCreg(int, int)
+QMeasureCreg::QMeasureCreg(int line, int bit)
 {
+	this->line = line;
+	this->bit = bit;
 }

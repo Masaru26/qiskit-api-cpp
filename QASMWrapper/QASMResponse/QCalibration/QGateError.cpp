@@ -4,6 +4,8 @@ QGateError::QGateError()
 {
 }
 
-QGateError::QGateError(std::string, double)
+QGateError::QGateError(std::string date, double value)
 {
+	this->date = date;
+	this->value = value;
 }

@@ -4,6 +4,8 @@ QReg::QReg()
 {
 }
 
-QReg::QReg(std::string, int)
+QReg::QReg(std::string name, int size)
 {
+	this->name = name;
+	this->size = size;
 }

@@ -4,6 +4,13 @@ QJsonQASM::QJsonQASM()
 {
 }
 
-QJsonQASM::QJsonQASM(std::string, QTopology, std::list<QPlayground>, int, bool, int, std::string)
+QJsonQASM::QJsonQASM(std::string gateDefinitions, QTopology topology, std::list<QPlayground> playground, int numberGates, bool hasMeasure, int numberColumns, std::string include)
 {
+	this->gateDefinitions = gateDefinitions;
+	this->topology = topology;
+	this->playground = playground;
+	this->numberGates = numberGates;
+	this->hasMeasures = hasMeasure;
+	this->numberColumns = numberColumns;
+	this->include = include;
 }

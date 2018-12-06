@@ -4,6 +4,8 @@ QFridgeParameters::QFridgeParameters()
 {
 }
 
-QFridgeParameters::QFridgeParameters(std::string, QFridgeTemperature)
+QFridgeParameters::QFridgeParameters(std::string cooldownDate, QFridgeTemperature temperature)
 {
+	this->cooldownDate = cooldownDate;
+	this->temperature = temperature;
 }

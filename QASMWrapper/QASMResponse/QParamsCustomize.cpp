@@ -4,6 +4,7 @@ QParamsCustomize::QParamsCustomize()
 {
 }
 
-QParamsCustomize::QParamsCustomize(long)
+QParamsCustomize::QParamsCustomize(long seed)
 {
+	this->seed = seed;
 }

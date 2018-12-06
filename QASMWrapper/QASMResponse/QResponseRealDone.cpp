@@ -4,6 +4,7 @@ QResponseRealDone::QResponseRealDone()
 {
 }
 
-QResponseRealDone::QResponseRealDone(double)
+QResponseRealDone::QResponseRealDone(double time)
 {
+	this->time = time;
 }
