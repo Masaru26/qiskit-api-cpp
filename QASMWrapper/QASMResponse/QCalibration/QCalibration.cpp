@@ -1,3 +1,6 @@
+#ifndef QCALIBRATION_CPP_INCLUDED
+#define QCALIBRATION_CPP_INCLUDED
+
 #include "QCalibration.h"
 
 QCalibration::QCalibration()
@@ -12,3 +15,4 @@ QCalibration::QCalibration(std::string lastUpdateDate, QFridgeParameters fridgeP
 	this->multiQubitGates = multiQubitGates;
 	this->version = version;
 }
+#endif

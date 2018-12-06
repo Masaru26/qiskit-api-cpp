@@ -1,3 +1,6 @@
+#ifndef QDATA_CPP_INCLUDED
+#define QDATA_CPP_INCLUDED
+
 #include "QData.h"
 
 QData::QData()
@@ -21,3 +24,4 @@ QData::QData(std::string creg_labels, QDataP p, QAdditionalData additionalData, 
 	this->serialNumberDevice = serialNumberDevice;
 	this->time = time;
 }
+#endif

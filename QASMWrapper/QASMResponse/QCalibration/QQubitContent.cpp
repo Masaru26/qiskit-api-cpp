@@ -1,3 +1,6 @@
+#ifndef QQUBITCONTENT_CPP_INCLUDED
+#define QQUBITCONTENT_CPP_INCLUDED
+
 #include "QQubitContent.h"
 
 QQubitContent::QQubitContent()
@@ -16,3 +19,4 @@ QQubitContent::QQubitContent(std::string date, int value, std::string unit)
 	this->value = value;
 	this->unit = unit;
 }
+#endif

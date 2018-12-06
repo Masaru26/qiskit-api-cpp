@@ -1,3 +1,6 @@
+#ifndef QTOPOLOGY_CPP_INCLUDED
+#define QTOPOLOGY_CPP_INCLUDED
+
 #include "QTopology.h"
 
 QTopology::QTopology()
@@ -10,3 +13,4 @@ QTopology::QTopology(std::list<QReg> cregs, std::list<QReg> qregs, std::string q
 	this->qregs = qregs;
 	this->qasmHeader = qasmHeader;
 }
+#endif

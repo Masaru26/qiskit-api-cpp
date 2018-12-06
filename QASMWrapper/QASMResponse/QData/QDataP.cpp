@@ -1,3 +1,6 @@
+#ifndef QDATAP_CPP_INCLUDED
+#define QDATAP_CPP_INCLUDED
+
 #include "QDataP.h"
 
 QDataP::QDataP()
@@ -16,3 +19,4 @@ QDataP::QDataP(std::list<int> qubits, std::list<std::string> labels, std::list<d
 	this->labels = labels;
 	this->values = values;
 }
+#endif

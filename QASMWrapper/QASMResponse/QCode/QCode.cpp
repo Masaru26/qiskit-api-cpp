@@ -1,3 +1,6 @@
+#ifndef QCODE_CPP_INCLUDED
+#define QCODE_CPP_INCLUDED
+
 #include "QCode.h"
 
 QCode::QCode()
@@ -22,3 +25,4 @@ QCode::QCode(std::string type, bool active, int versionId, std::string idCode, s
 	this->id = id;
 	this->userId;
 }
+#endif

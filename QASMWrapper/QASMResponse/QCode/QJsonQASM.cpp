@@ -1,3 +1,6 @@
+#ifndef QJSONQASM_CPP_INCLUDED
+#define QJSONQASM_CPP_INCLUDED
+
 #include "QJsonQASM.h"
 
 QJsonQASM::QJsonQASM()
@@ -14,3 +17,4 @@ QJsonQASM::QJsonQASM(std::string gateDefinitions, QTopology topology, std::list<
 	this->numberColumns = numberColumns;
 	this->include = include;
 }
+#endif

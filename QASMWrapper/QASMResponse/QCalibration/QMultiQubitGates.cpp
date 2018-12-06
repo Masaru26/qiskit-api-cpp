@@ -1,3 +1,6 @@
+#ifndef QMULTIQUBITGATES_CPP_INCLUDED
+#define QMULTIQUBITGATES_CPP_INCLUDED
+
 #include "QMultiQubitGates.h"
 
 QMultiQubitGates::QMultiQubitGates()
@@ -11,3 +14,4 @@ QMultiQubitGates::QMultiQubitGates(std::list<int> qubits, std::string type, QGat
 	this->gateError = gateError;
 	this->name = name;
 }
+#endif

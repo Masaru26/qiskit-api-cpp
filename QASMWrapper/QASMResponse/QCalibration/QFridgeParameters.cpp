@@ -1,3 +1,6 @@
+#ifndef QFRIDGEPARAMETERS_CPP_INCLUDED
+#define QFRIDGEPARAMETERS_CPP_INCLUDED
+
 #include "QFridgeParameters.h"
 
 QFridgeParameters::QFridgeParameters()
@@ -9,3 +12,4 @@ QFridgeParameters::QFridgeParameters(std::string cooldownDate, QFridgeTemperatur
 	this->cooldownDate = cooldownDate;
 	this->temperature = temperature;
 }
+#endif

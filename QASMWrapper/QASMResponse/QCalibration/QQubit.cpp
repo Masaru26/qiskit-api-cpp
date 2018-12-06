@@ -1,3 +1,6 @@
+#ifndef QQUBIT_CPP_INCLUDED
+#define QQUBIT_CPP_INCLUDED
+
 #include "QQubit.h"
 
 QQubit::QQubit()
@@ -15,3 +18,4 @@ QQubit::QQubit(std::string name, QQubitContent buffer, QQubitContent gateTime, Q
 	this->gateError = gateError;
 	this->readoutError = readoutError;
 }
+#endif

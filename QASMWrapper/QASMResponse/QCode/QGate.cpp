@@ -1,3 +1,6 @@
+#ifndef QGATE_CPP_INCLUDED
+#define QGATE_CPP_INCLUDED
+
 #include "QGate.h"
 
 QGate::QGate()
@@ -12,3 +15,4 @@ QGate::QGate(std::string name, std::string qasm, int position, std::list<bool> a
 	this->affectedLines = affectedLines;
 	this->measureCreg = measureCreg;
 }
+#endif

@@ -1,3 +1,6 @@
+#ifndef QRESPONSE_CPP_INCLUDED
+#define QRESPONSE_CPP_INCLUDED
+
 #include "QResponse.h"
 
 QResponse::QResponse()
@@ -23,3 +26,4 @@ QResponse::QResponse(std::string startDate, long modificationDate, int shots, bo
 	this->status = status;
 	this->ip = ip;
 }
+#endif
