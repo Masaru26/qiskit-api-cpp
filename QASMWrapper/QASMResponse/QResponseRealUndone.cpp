@@ -3,7 +3,7 @@
 
 #include "QResponseRealUndone.h"
 
-QResponseRealUndone::QResponseRealUndone()
+QResponseRealUndone::QResponseRealUndone() : QResponseReal()
 {
 }
 #endif

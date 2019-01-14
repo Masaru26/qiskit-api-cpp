@@ -1,7 +1,9 @@
 #ifndef QRESPONSEREALUNDONE_H_INCLUDED__;
 #define QRESPONSEREALUNDONE_H_INCLUDED__;
 
-class QResponseRealUndone : public QResponse {
+#include "QResponseReal.h"
+
+class QResponseRealUndone : public QResponseReal {
 	public:
 		QResponseRealUndone();
 };
