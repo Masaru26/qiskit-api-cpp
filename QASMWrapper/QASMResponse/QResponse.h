@@ -1,4 +1,4 @@
-#ifndef QRESPONSE_H_INCLUDED__;
+﻿#ifndef QRESPONSE_H_INCLUDED__;
 #define QRESPONSE_H_INCLUDED__;
 #include <string>;
 #include "QResult.h";
@@ -7,8 +7,9 @@
 #include "QCalibration.h";
 #include "QParamsCustomize.h";
 #include "QCode.h";
+#include "IFillable.h";
 
-class QResponse {
+class QResponse : public IFillable {
 
 	public:
 		QResponse();
@@ -27,11 +28,13 @@ class QResponse {
 		std::string endDate;
 		std::string id;
 		std::string deviceId;
-		std::string deviceRunType;
+		std::string deviceRunType; // Gehört in die Sim Klasse
 		std::string codeId;
 		QResult result;
 		QStatus status;
 		QIP ip;
+
+		bool ParseJson(std::string[] json);
 };
 
 #endif
