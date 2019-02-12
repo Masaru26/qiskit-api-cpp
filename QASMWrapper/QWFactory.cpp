@@ -13,7 +13,8 @@ QResponse QWFactory::Create(std::string str)
 	if (statusID == STATUD_ID_DONE) {
 
 		// wenn paramscustomize seed vorhanden --> SIM
-		// Work in progress
+		// Theoretisch fertig es fehlt allerdings die jobId in der QResponseReal Klasse
+		// Außerdem passen die Konstruktoren nicht die .h Konstruktoren und die .cpp Konstruktoren stimmen nicht überein
 		if (jOBJ["paramsCustomize"]["seed"] == Json::nullValue) {
 			// RealDone
 			// Results
@@ -54,11 +55,22 @@ QResponse QWFactory::Create(std::string str)
 			// MultiQubitGates list
 			std::list<QMultiQubitGates> qubitGates = new std::list<QMultiQubitGates>();
 
+			for (auto itr : jOBJ["calibration"]["multiQubitGates"]) {
+				std::list<int> qus = new std::list<int>();
+				for (auto qu : itr["qubits"]) {
+					qus.insert(qu.asInt32());
+				}
+
+				qubitGates.insert(new QMultiQubitGates(qus, itr["type"].asString(), new QGateError(itr["gateError"]["date"].asString(), itr["gatError"]["value"].asDouble()), itr["name"].asString()));
+			}
 			// Create calibration object
 			QCalibration calibration = new QCalibration(jOBJ["calibration"]["lastUpdateDate"].asString(), frideparams, qubits, qubitGates, jOBJ["calibration"]["version"].asString());
 			
 			// Create response object
-			QResponse respRD = new QResponseRealDone(jOBJ["startDate"].asString(), jOBJ["modificationDate"].asString(), jOBJ["shots"].asInt32(), jOBJ["deleted"].asBool(), jOBJ["userDeleted"].asBool(), jOBJ["userId"].asString(), jOBJ["jobId"].asString(), jOBJ["qasm"].asString(), jOBJ["endDate"].asString(), jOBJ["id"].asString(), jOBJ["deviceId"].asString(), result, new QStatus(jOBJ["status"]["id"].asString()), new QIP(jOBJ["ip"]["ip"].asString(), jOBJ["ip"]["status"].asString(), jOBJ["ip"]["continent"].asString()), calibration, jOBJ["typeCredits"].asString(), jOBJ["time"].asDouble());
+			QResponse respRD = new QResponseRealDone(jOBJ["startDate"].asString(), jOBJ["modificationDate"].asString(), jOBJ["shots"].asInt32(), jOBJ["deleted"].asBool(), jOBJ["userDeleted"].asBool(), jOBJ["userId"].asString(), 
+				jOBJ["jobId"].asString(), jOBJ["qasm"].asString(), jOBJ["endDate"].asString(), jOBJ["id"].asString(), jOBJ["deviceId"].asString(), result, new QStatus(jOBJ["status"]["id"].asString()), 
+				new QIP(jOBJ["ip"]["ip"].asString(), jOBJ["ip"]["status"].asString(), jOBJ["ip"]["continent"].asString()), 
+				calibration, jOBJ["typeCredits"].asString(), jOBJ["time"].asDouble());
 		
 			return respRD;
 		}
@@ -132,11 +144,10 @@ QResponse QWFactory::Create(std::string str)
 			// Return simulation object
 			return respSim;
 		}
-
 	}
 	// Work in progress
 	else if (statusID == STATUD_ID_WORKING) {
-		// Real UnDone
+		// Real Undone
 		QResponse respUndone = new QResponseRealUndone();
 
 		return respUndone;
