@@ -7,7 +7,7 @@ QParamsCustomize::QParamsCustomize()
 {
 }
 
-QParamsCustomize::QParamsCustomize(long seed)
+QParamsCustomize::QParamsCustomize(std::string seed)
 {
 	this->seed = seed;
 }

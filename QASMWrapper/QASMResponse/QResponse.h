@@ -14,7 +14,7 @@ class QResponse : public IFillable {
 	public:
 		QResponse();
 		QResponse(std::string, long, int, bool, bool, std::string, std::string, std::string,
-			std::string, std::string, std::string, std::string, std::string, std::string, QResult,
+			std::string, std::string, std::string, std::string, std::string, QResult,
 			QStatus, QIP);
 
 		std::string startDate;
@@ -28,7 +28,7 @@ class QResponse : public IFillable {
 		std::string endDate;
 		std::string id;
 		std::string deviceId;
-		std::string deviceRunType; // Gehört in die Sim Klasse
+		// Gehört in die Sim Klasse
 		std::string codeId;
 		QResult result;
 		QStatus status;

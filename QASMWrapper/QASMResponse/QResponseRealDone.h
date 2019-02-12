@@ -10,4 +10,4 @@ class QResponseRealDone : public QResponseReal {
 		double time;
 };
 
-#endif	
+#endif
