@@ -6,7 +6,7 @@
 class QResponseRealDone : public QResponseReal {
 	public:
 		QResponseRealDone();
-		QResponseRealDone(double);
+		QResponseRealDone(std::string, long, int, bool, bool, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, QResult, QStatus, QIP, QCalibration, std::string, double);
 		double time;
 };
 

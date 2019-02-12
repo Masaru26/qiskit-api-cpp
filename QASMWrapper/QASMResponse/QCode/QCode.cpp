@@ -7,7 +7,7 @@ QCode::QCode()
 {
 }
 
-QCode::QCode(std::string type, bool active, int versionId, std::string idCode, std::string name, QJsonQASM jsonQASM, std::string qasm, std::string codeType, std::string creationType, bool deleted, long orderDate, bool userDeleted, bool isPublic, std::string id, std::string userId)
+QCode::QCode(std::string type, bool active, int versionId, std::string idCode, std::string name, QJsonQASM jsonQASM, std::string qasm, std::string codeType, std::string creationDate,std::string creationType, bool deleted, long orderDate, bool userDeleted, bool isPublic, std::string id, std::string userId)
 {
 	this->type = type;
 	this->active = active;

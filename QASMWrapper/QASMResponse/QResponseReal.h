@@ -5,7 +5,7 @@
 class QResponseReal : public QResponse {
 	public:
 		QResponseReal();
-		QResponseReal(QCalibration, std::string);
+		QResponseReal(std::string, long, int, bool, bool, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, QResult, QStatus, QIP, QCalibration, std::string);
 
 		QCalibration calibration;
 		std::string typeCredits;

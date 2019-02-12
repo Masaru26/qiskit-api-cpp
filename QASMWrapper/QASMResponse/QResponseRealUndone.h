@@ -5,7 +5,7 @@
 
 class QResponseRealUndone : public QResponseReal {
 	public:
-		QResponseRealUndone();
+		QResponseRealUndone(std::string, long, int, bool, bool, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, QResult, QStatus, QIP, QCalibration, std::string);
 };
 
 #endif
