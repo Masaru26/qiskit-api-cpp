@@ -6,7 +6,6 @@
 class QAdditionalData {
 public:
 	QAdditionalData();
-	QAdditionalData(std::string, std::list<std::string>);
+	QAdditionalData(std::string);
 	std::string seed;
-	std::list<std::string> addData;
 };

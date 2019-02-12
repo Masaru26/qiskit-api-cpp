@@ -5,7 +5,7 @@
 class QParamsCustomize {
 	public:
 		QParamsCustomize();
-		QParamsCustomize(std::string);
-		std::string seed;
+		QParamsCustomize(long);
+		long seed;
 };
 #endif;

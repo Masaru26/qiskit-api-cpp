@@ -7,12 +7,20 @@ QResponse::QResponse()
 {
 }
 
-bool QResponse::ParseJson(std::string[] json)
-{
-	return false;
-}
-
-QResponse::QResponse(std::string startDate, long modificationDate, int shots, bool deleted, bool userDeleted, std::string userId, std::string jobId, std::string qasm, std::string endDate, std::string id, std::string deviceId, QResult result, QStatus status, QIP ip)
+QResponse::QResponse(
+	std::string startDate
+	, long modificationDate
+	, int shots
+	, bool deleted
+	, bool userDeleted
+	, std::string userId
+	, std::string qasm
+	, std::string endDate
+	, std::string id
+	, std::string deviceId
+	, QResult result
+	, QStatus status
+	, QIP ip)
 {
 	this->startDate = startDate;
 	this->modificationDate = modificationDate;
@@ -20,7 +28,6 @@ QResponse::QResponse(std::string startDate, long modificationDate, int shots, bo
 	this->deleted = deleted;
 	this->userDeleted = userDeleted;
 	this->userId = userId;
-	this->jobId = jobId;
 	this->qasm = qasm;
 	this->endDate = endDate;
 	this->id = id;
@@ -28,5 +35,33 @@ QResponse::QResponse(std::string startDate, long modificationDate, int shots, bo
 	this->result = result;
 	this->status = status;
 	this->ip = ip;
+}
+QResponse::QResponse(
+	std::string startDate
+	, long modificationDate
+	, int shots
+	, bool deleted
+	, bool userDeleted
+	, std::string userId
+	, std::string qasm
+	, std::string id
+	, QStatus status
+	, QIP ip
+)
+{
+	this->startDate = startDate;
+	this->modificationDate = modificationDate;
+	this->shots = shots;
+	this->deleted = deleted;
+	this->userDeleted = userDeleted;
+	this->userId = userId;
+	this->qasm = qasm;
+	this->endDate = NULL;
+	this->id = id;
+	this->deviceId = NULL;
+	this->result = NULL;
+	this->status = status;
+	this->ip = ip;
+
 }
 #endif

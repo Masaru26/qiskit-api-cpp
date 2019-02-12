@@ -6,7 +6,26 @@
 class QResponseRealDone : public QResponseReal {
 	public:
 		QResponseRealDone();
-		QResponseRealDone(std::string, long, int, bool, bool, std::string, std::string, std::string, std::string, std::string, std::string, QResult, QStatus, QIP, QCalibration, std::string, double);
+		QResponseRealDone(
+			std::string startDate
+			, long modificationDate
+			, int shots
+			, bool deleted
+			, bool userDeleted
+			, std::string userId
+			, std::string jobId
+			, std::string qasm
+			, std::string endDate
+			, std::string id
+			, std::string deviceId
+			, QResult result
+			, QStatus status
+			, QIP ip
+			, QCalibration calibration
+			, std::string typeCredits
+			, double time
+		)
+			: QResponseReal(startDate, modificationDate, shots, deleted, userDeleted, userId, jobId, qasm, endDate, id, deviceId, result, status, ip, calibration, typeCredits);
 		double time;
 };
 
