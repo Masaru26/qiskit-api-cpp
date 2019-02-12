@@ -3,11 +3,11 @@
 
 #include "QIP.h"
 
-QIP::QSimIP()
+QIP::QIP()
 {
 }
 
-QIP::QSimIP(std::string ip, std::string country, std::string continent)
+QIP::QIP(std::string ip, std::string country, std::string continent)
 {
 	this->ip = ip;
 	this->country = country;

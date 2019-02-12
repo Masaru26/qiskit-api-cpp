@@ -5,11 +5,11 @@
 class QQubitContent {
 	public:
 		QQubitContent();
-		QQubitContent(std::string, int);
-		QQubitContent(std::string, int, std::string);
+		QQubitContent(std::string, double);
+		QQubitContent(std::string, double, std::string);
 
 		std::string date;
-		int value;
+		double value;
 		std::string unit;
 };
 

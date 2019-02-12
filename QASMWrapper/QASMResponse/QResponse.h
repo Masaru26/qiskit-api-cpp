@@ -28,8 +28,6 @@ class QResponse : public IFillable {
 		std::string endDate;
 		std::string id;
 		std::string deviceId;
-		// Gehört in die Sim Klasse
-		std::string codeId;
 		QResult result;
 		QStatus status;
 		QIP ip;

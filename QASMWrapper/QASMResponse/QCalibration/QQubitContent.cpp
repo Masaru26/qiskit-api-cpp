@@ -7,13 +7,13 @@ QQubitContent::QQubitContent()
 {
 }
 
-QQubitContent::QQubitContent(std::string date, int value)
+QQubitContent::QQubitContent(std::string date, double value)
 {
 	this->date = date;
 	this->value = value;
 }
 
-QQubitContent::QQubitContent(std::string date, int value, std::string unit)
+QQubitContent::QQubitContent(std::string date, double value, std::string unit)
 {
 	this->date = date;
 	this->value = value;

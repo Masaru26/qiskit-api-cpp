@@ -4,8 +4,8 @@
 
 class QIP {
 public:
-	QSimIP();
-	QSimIP(std::string, std::string, std::string);
+	QIP();
+	QIP(std::string, std::string, std::string);
 	std::string ip;
 	std::string country;
 	std::string continent;

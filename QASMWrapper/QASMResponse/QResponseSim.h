@@ -12,6 +12,8 @@ class QResponseSim : public QResponse {
 		QParamsCustomize paramsCustomize;
 		double time;
 		std::string deviceRunType;
+		std::string codeId;
+
 };
 
 #endif
